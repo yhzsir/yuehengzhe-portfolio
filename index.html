@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>岳恒喆 | 个人作品集</title>
+  <meta name="description" content="岳恒喆 — 建模仿真工程师 / 数字孪生方向，专注工业仿真、无人驾驶与路径规划">
+  <meta name="canvas:aspect-ratio" content="16:9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Custom Properties — Apple Blue-White Design ===== */
+    :root {
+      --seed-bg: #f5f5f7;
+      --seed-fg: #1d1d1f;
+      --seed-primary: #0071e3;
+      --seed-accent: #0066cc;
+      --seed-surface: #ffffff;
+      --seed-radius: 8;
+
+      --bg: var(--seed-bg);
+      --surface: var(--seed-surface);
+      --surface-elevated: #f0f0f5;
+      --surface-card: #ffffff;
+      --fg: var(--seed-fg);
+      --fg-muted: #6e6e73;
+      --fg-subtle: #86868b;
+      --border: rgba(0,0,0,0.06);
+      --border-strong: #d2d2d7;
+      --border-apple: #d2d2d7;
+      --accent: var(--seed-primary);
+      --accent-light: var(--seed-primary);
+      --accent-warm: #6e6e73;
+
+      --font-display: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 48px;
+      --space-2xl: 80px;
+      --space-3xl: 120px;
+      --space-section: 120px;
+
+      --radius: calc(var(--seed-radius) * 1px);
+      --radius-lg: calc(var(--seed-radius) * 2px);
+      --radius-xl: calc(var(--seed-radius) * 3px);
+      --radius-pill: 980px;
+
+      --nav-height: 48px;
+      --content-max: 980px;
+      --content-narrow: 820px;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--fg);
+      font-size: 17px;
+      line-height: 1.47;
+      font-weight: 400;
+      letter-spacing: -0.022em;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ===== Typography ===== */
+    .t-display {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+
+    .t-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 600;
+      line-height: 1.07;
+      letter-spacing: -0.005em;
+    }
+
+    .t-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.003em;
+    }
+
+    .t-h3 {
+      font-family: var(--font-body);
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.21;
+      letter-spacing: 0.012em;
+    }
+
+    .t-body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.47;
+      letter-spacing: -0.022em;
+    }
+
+    .t-small {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.43;
+      letter-spacing: -0.016em;
+    }
+
+    .t-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .t-label-lg {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    /* ===== Utilities ===== */
+    .container {
+      width: 100%;
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .container--narrow {
+      max-width: var(--content-narrow);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 44px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--fg-subtle);
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      border: none;
+    }
+
+    /* ===== Animations ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      background-color: rgba(245,245,247,0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: background-color 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background-color: rgba(245,245,247,0.92);
+      border-bottom-color: rgba(0,0,0,0.1);
+    }
+
+    .nav__inner {
+      width: 100%;
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+
+    .nav__logo span {
+      color: var(--fg-subtle);
+      font-weight: 400;
+      margin-left: 6px;
+      font-size: 12px;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--fg-muted);
+      letter-spacing: -0.01em;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav__links a:hover {
+      color: var(--fg);
+    }
+
+    .nav__links a:hover::after {
+      width: 100%;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      padding: var(--nav-height) 22px 64px;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__name-en {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+      margin-bottom: 12px;
+    }
+
+    .hero__name-cn {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 500;
+      color: var(--fg-muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 32px;
+    }
+
+    .hero__accent-line {
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), #5ac8fa);
+      margin: 0 auto 32px;
+      border-radius: 2px;
+    }
+
+    .hero__title {
+      font-family: var(--font-body);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--fg-muted);
+      letter-spacing: -0.01em;
+    }
+
+    .hero__title span {
+      margin: 0 10px;
+      color: var(--fg-subtle);
+    }
+
+    .hero__subtitle {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--fg-subtle);
+      letter-spacing: -0.01em;
+      margin-top: 12px;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero__scroll-text {
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      writing-mode: vertical-rl;
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--fg-subtle), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.15); }
+    }
+
+    /* ===== About ===== */
+    .about {
+      padding: var(--space-section) 0;
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    .about__divider {
+      width: 1px;
+      height: 100%;
+      min-height: 200px;
+      background: var(--border-strong);
+    }
+
+    .about__quote {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      padding-top: 8px;
+    }
+
+    .about__quote::before {
+      content: '\201C';
+      display: block;
+      font-size: 56px;
+      line-height: 0.8;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-style: normal;
+    }
+
+    .about__text {
+      padding-top: 12px;
+    }
+
+    .about__text p {
+      font-size: 17px;
+      line-height: 1.53;
+      color: var(--fg-muted);
+      margin-bottom: 18px;
+      max-width: 48ch;
+      letter-spacing: -0.022em;
+    }
+
+    .about__text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about__text strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .about__stats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 44px;
+      border-top: 1px solid var(--border);
+    }
+
+    .about__stat {
+      padding: 24px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .about__stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .about__stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .about__stat-label {
+      font-size: 12px;
+      color: var(--fg-subtle);
+      letter-spacing: 0.01em;
+    }
+
+    /* ===== Showcase (Video Projects) ===== */
+    .showcase {
+      padding: var(--space-section) 0;
+    }
+
+    .showcase__header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .showcase__count {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--fg-subtle);
+      letter-spacing: -0.01em;
+    }
+
+    .showcase__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 44px;
+    }
+
+    .video-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .video-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .video-card__inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+    }
+
+    .video-card__media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #0a0a0a;
+      cursor: pointer;
+    }
+
+    .video-card__media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-card__poster {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      transition: opacity 0.4s ease;
+      z-index: 2;
+    }
+
+    .video-card__poster--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .video-card__play-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-card__play-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.25);
+    }
+
+    .video-card__play-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+      margin-left: 3px;
+    }
+
+    .video-card__poster-label {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+
+    .video-card__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 40px;
+    }
+
+    .video-card__index {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .video-card__title {
+      font-family: var(--font-body);
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.24;
+      color: var(--fg);
+      margin-bottom: 10px;
+      letter-spacing: -0.022em;
+    }
+
+    .video-card__desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--fg-subtle);
+      max-width: 48ch;
+      letter-spacing: -0.016em;
+      margin-bottom: 16px;
+    }
+
+    .video-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .video-card__tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(0,113,227,0.08);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ===== Video Modal ===== */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .video-modal.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .video-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      cursor: pointer;
+    }
+
+    .video-modal__content {
+      position: relative;
+      z-index: 1;
+      width: 90vw;
+      max-width: 960px;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .video-modal.is-active .video-modal__content {
+      transform: scale(1);
+    }
+
+    .video-modal__video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+      background: #000;
+      display: block;
+    }
+
+    .video-modal__title {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      margin-top: 16px;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .video-modal__close {
+      position: absolute;
+      top: -44px;
+      right: -4px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: rgba(255,255,255,0.15);
+      color: #ffffff;
+      font-size: 22px;
+      line-height: 1;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+      font-family: var(--font-body);
+      padding: 0;
+    }
+
+    .video-modal__close:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ===== Timeline ===== */
+    .timeline-section {
+      padding: var(--space-section) 0;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      margin-top: 44px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .timeline__item {
+      position: relative;
+      padding-bottom: 32px;
+    }
+
+    .timeline__item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline__dot {
+      position: absolute;
+      left: -38px;
+      top: 28px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: var(--bg);
+      z-index: 1;
+    }
+
+    .timeline__content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 28px 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline__content:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .timeline__period {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent-light);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .timeline__title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      line-height: 1.21;
+    }
+
+    .timeline__desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--fg-subtle);
+      max-width: 56ch;
+      letter-spacing: -0.01em;
+    }
+
+    /* ===== Skills ===== */
+    .skills {
+      padding: var(--space-section) 0;
+    }
+
+    .skills__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin-top: 44px;
+    }
+
+    .skills__group-title {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--fg-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--fg);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease,
+                  box-shadow 0.3s ease;
+      letter-spacing: -0.01em;
+    }
+
+    .skill-tag:hover {
+      background: var(--surface-elevated);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,113,227,0.1);
+    }
+
+    /* ===== Contact ===== */
+    .contact {
+      padding: var(--space-section) 0;
+      text-align: center;
+    }
+
+    .contact .section-label {
+      margin-top: 24px;
+    }
+
+    .contact__email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 400;
+      color: #ffffff;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 12px 28px;
+      margin-bottom: 32px;
+      transition: background-color 0.3s ease;
+      letter-spacing: -0.022em;
+    }
+
+    .contact__email:hover {
+      background: #0077ed;
+      box-shadow: 0 4px 16px rgba(0,113,227,0.3);
+    }
+
+    .contact__email svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .contact__phone {
+      font-size: 14px;
+      color: var(--fg-subtle);
+      letter-spacing: -0.01em;
+      margin-top: 20px;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer__text {
+      font-size: 12px;
+      color: var(--fg-subtle);
+      letter-spacing: -0.01em;
+    }
+
+    .footer__back-top {
+      font-size: 12px;
+      color: var(--fg-subtle);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .footer__back-top:hover {
+      color: var(--accent);
+    }
+
+    /* ===== Page Loader ===== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  visibility 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+    }
+
+    .page-loader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .page-loader__grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0;
+      animation: loaderGridIn 1s ease 0.1s forwards;
+    }
+
+    @keyframes loaderGridIn {
+      to { opacity: 1; }
+    }
+
+    .page-loader__shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .page-loader__shape--1 {
+      width: 180px;
+      height: 180px;
+      border: 1.5px solid var(--accent);
+      top: 12%;
+      left: 8%;
+      animation: loaderShapeIn 0.6s ease 0.2s forwards, loaderFloat1 6s ease-in-out infinite 0.2s;
+    }
+
+    .page-loader__shape--2 {
+      width: 90px;
+      height: 90px;
+      border: 1px solid var(--fg-subtle);
+      bottom: 18%;
+      right: 12%;
+      animation: loaderShapeIn 0.6s ease 0.35s forwards, loaderFloat2 7s ease-in-out infinite 0.35s;
+    }
+
+    .page-loader__shape--3 {
+      width: 6px;
+      height: 6px;
+      border-radius: 0;
+      background: var(--accent);
+      top: 28%;
+      right: 22%;
+      transform: rotate(45deg);
+      animation: loaderShapeIn 0.6s ease 0.5s forwards, loaderFloat3 5s ease-in-out infinite 0.5s;
+    }
+
+    .page-loader__shape--4 {
+      width: 44px;
+      height: 1px;
+      border-radius: 0;
+      background: var(--border-strong);
+      bottom: 32%;
+      left: 15%;
+      animation: loaderShapeIn 0.6s ease 0.45s forwards, loaderFloat4 8s ease-in-out infinite 0.45s;
+    }
+
+    .page-loader__shape--5 {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border-strong);
+      top: 65%;
+      left: 72%;
+      border-radius: 4px;
+      transform: rotate(15deg);
+      animation: loaderShapeIn 0.6s ease 0.55s forwards, loaderFloat5 9s ease-in-out infinite 0.55s;
+    }
+
+    @keyframes loaderShapeIn {
+      to { opacity: 0.5; }
+    }
+
+    @keyframes loaderFloat1 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(12px, -18px) rotate(8deg); }
+    }
+    @keyframes loaderFloat2 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-10px, 14px) rotate(-10deg); }
+    }
+    @keyframes loaderFloat3 {
+      0%, 100% { transform: translate(0, 0) rotate(45deg); }
+      50% { transform: translate(8px, -10px) rotate(45deg); }
+    }
+    @keyframes loaderFloat4 {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(20px); }
+    }
+    @keyframes loaderFloat5 {
+      0%, 100% { transform: translate(0, 0) rotate(15deg); }
+      50% { transform: translate(-8px, 10px) rotate(25deg); }
+    }
+
+    .page-loader__center {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-loader__text {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 600;
+      color: var(--fg);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: loaderTextIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+    }
+
+    @keyframes loaderTextIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-loader__line {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0;
+      animation: loaderLineIn 0.6s ease 0.5s forwards;
+    }
+
+    .page-loader__line--left { transform-origin: right center; }
+    .page-loader__line--right { transform-origin: left center; }
+
+    @keyframes loaderLineIn {
+      from { opacity: 0; transform: scaleX(0); }
+      to { opacity: 0.6; transform: scaleX(1); }
+    }
+
+    .page-loader__row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-loader__ring {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: loaderRingIn 0.4s ease 0.7s forwards, loaderRingPulse 2s ease-in-out infinite 0.7s;
+    }
+
+    @keyframes loaderRingIn {
+      to { opacity: 0.4; }
+    }
+
+    @keyframes loaderRingPulse {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.25); opacity: 0.15; }
+    }
+
+    /* ===== Hero Entrance Animations ===== */
+    @keyframes heroReveal {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes lineExpand {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: 1; }
+    }
+
+    @keyframes navSlideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero__name-en,
+    .hero__name-cn,
+    .hero__accent-line,
+    .hero__title,
+    .hero__subtitle,
+    .hero__scroll {
+      opacity: 0;
+    }
+
+    body.page-loaded .hero__name-en {
+      animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    body.page-loaded .hero__name-cn {
+      animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+    }
+
+    body.page-loaded .hero__accent-line {
+      animation: lineExpand 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.66s both;
+      transform-origin: center;
+    }
+
+    body.page-loaded .hero__title {
+      animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.82s both;
+    }
+
+    body.page-loaded .hero__subtitle {
+      animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.96s both;
+    }
+
+    body.page-loaded .hero__scroll {
+      animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.1s both;
+    }
+
+    body.page-loaded .nav {
+      animation: navSlideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+    }
+
+    .nav {
+      opacity: 0;
+    }
+
+    /* ===== Video card poster backgrounds ===== */
+    .poster-bg-1 {
+      background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0f3460 100%);
+    }
+
+    .poster-bg-2 {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .poster-bg-3 {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #2d4a5e 100%);
+    }
+
+    /* SVG decoration inside poster */
+    .video-card__poster-decor {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+    }
+
+    .video-card__poster-decor svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ===== Responsive ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .page-loader { display: none; }
+      .page-loader__grid,
+      .page-loader__shape,
+      .page-loader__ring,
+      .page-loader__line,
+      .page-loader__text {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .hero__name-en,
+      .hero__name-cn,
+      .hero__accent-line,
+      .hero__title,
+      .hero__subtitle,
+      .hero__scroll,
+      .nav {
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .container { padding: 0 22px; }
+      .nav { padding: 0 22px; }
+      :root { --space-section: 80px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .about__divider { display: none; }
+
+      .about__stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+      }
+
+      .about__stat:nth-child(2)::after {
+        display: none;
+      }
+
+      .about__stat:nth-child(1),
+      .about__stat:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .video-card__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .video-card__media {
+        aspect-ratio: 16 / 9;
+      }
+
+      .video-card__body {
+        padding: 24px;
+      }
+
+      .skills__grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .nav__links { gap: 20px; }
+      .nav__links a { font-size: 12px; }
+
+      .timeline {
+        padding-left: 32px;
+      }
+
+      .timeline__dot {
+        left: -30px;
+      }
+
+      .timeline__content {
+        padding: 20px 24px;
+      }
+
+      .footer__inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root { --space-section: 64px; }
+      .nav__logo span { display: none; }
+
+      .hero__name-en {
+        font-size: clamp(40px, 12vw, 64px);
+      }
+
+      .hero__title span {
+        display: none;
+      }
+
+      .about__stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact__email {
+        padding: 14px 24px;
+        font-size: 14px;
+      }
+
+      .video-card__title {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Page Loader ===== -->
+  <div class="page-loader" id="pageLoader">
+    <div class="page-loader__grid"></div>
+    <div class="page-loader__shape page-loader__shape--1"></div>
+    <div class="page-loader__shape page-loader__shape--2"></div>
+    <div class="page-loader__shape page-loader__shape--3"></div>
+    <div class="page-loader__shape page-loader__shape--4"></div>
+    <div class="page-loader__shape page-loader__shape--5"></div>
+    <div class="page-loader__center">
+      <div class="page-loader__ring"></div>
+      <div class="page-loader__row">
+        <div class="page-loader__line page-loader__line--left"></div>
+        <span class="page-loader__text">Hello</span>
+        <div class="page-loader__line page-loader__line--right"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav" id="nav" data-component="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">岳恒喆<span>YHZ</span></a>
+      <ul class="nav__links">
+        <li><a href="#about">关于</a></li>
+        <li><a href="#showcase">项目</a></li>
+        <li><a href="#experience">经历</a></li>
+        <li><a href="#skills">技能</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Main Content ===== -->
+  <main data-component="page-main">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="hero" data-component="hero">
+    <div class="hero__content">
+      <h1 class="hero__name-en">HENG ZHE YUE</h1>
+      <p class="hero__name-cn">岳 恒 喆</p>
+      <div class="hero__accent-line"></div>
+      <p class="hero__title">
+        建模仿真<span>/</span>数字孪生
+      </p>
+      <p class="hero__subtitle">
+        香港城市大学 · 硕士在读 · 深圳技术大学 · 自动化
+      </p>
+    </div>
+    <div class="hero__scroll">
+      <span class="hero__scroll-text">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="about" id="about" data-component="about">
+    <div class="container container--narrow">
+      <div class="section-label reveal">
+        <span class="t-label">关于 / About</span>
+      </div>
+      <div class="about__grid">
+        <div class="about__quote reveal reveal-delay-1">
+          以仿真驱动决策，<br>用数字孪生构建工业智能的未来。
+        </div>
+        <div class="about__divider"></div>
+        <div class="about__text reveal reveal-delay-2">
+          <p>我是岳恒喆，<strong>香港城市大学</strong>2026级硕士研究生，本科毕业于<strong>深圳技术大学</strong>自动化专业（前20%，优秀毕业生）。专注方向为<strong>数字孪生建模与仿真</strong>、工业流程优化与智能算法。</p>
+          <p>曾在<strong>Ashley外企</strong>担任数字化建模与仿真工程师，主导产线数字孪生建模与产能优化；在<strong>银子运力科技</strong>担任无人驾驶算法工程师，负责路径规划与感知算法开发。以<strong>第一作者</strong>身份在SCI Q1期刊 <em>Scientific Reports</em> 发表论文，并持有相关发明专利。</p>
+          <p>熟练使用 Plant Simulation、Process Simulate、MATLAB、Python、ROS、Solidworks 等工程仿真与开发工具，具备从建模仿真到算法落地的完整项目能力。</p>
+        </div>
+      </div>
+      <div class="about__stats reveal reveal-delay-3">
+        <div class="about__stat">
+          <div class="about__stat-value" data-target="1" data-decimals="0" data-prefix="">0</div>
+          <div class="about__stat-label">SCI Q1 论文（一作）</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-value" data-target="2" data-decimals="0">0</div>
+          <div class="about__stat-label">企业实习</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-value" data-target="1" data-decimals="0">0</div>
+          <div class="about__stat-label">发明专利</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-value" data-target="3" data-suffix="+" data-decimals="0">0</div>
+          <div class="about__stat-label">竞赛获奖</div>
+        </div>
+        <div class="about__stat">
+          <div class="about__stat-value" data-target="10" data-suffix="+" data-decimals="0">0</div>
+          <div class="about__stat-label">专业工具</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider"></div>
+
+  <!-- ===== Showcase (Video Projects) ===== -->
+  <section class="showcase" id="showcase" data-component="showcase">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="t-label">项目展示 / Project Showcase</span>
+        <span class="showcase__count">3 projects</span>
+      </div>
+      <div class="showcase__grid">
+
+        <!-- Project 1: Digital Twin -->
+        <article class="video-card reveal" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project1-digital-twin.mp4" data-title="数字孪生建模与仿真系统">
+              <div class="video-card__poster poster-bg-1" id="poster1">
+                <div class="video-card__poster-decor">
+                  <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="125" x2="400" y2="125" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-dasharray="4,8"/>
+                    <line x1="200" y1="0" x2="200" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="4,8"/>
+                    <circle cx="200" cy="125" r="60" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="0.5"/>
+                    <circle cx="200" cy="125" r="90" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="0.5"/>
+                    <rect x="140" y="75" width="120" height="100" rx="4" stroke="rgba(255,255,255,0.06)" fill="none" stroke-width="0.5"/>
+                    <polyline points="80,180 140,150 200,170 260,130 320,160" stroke="rgba(255,255,255,0.12)" fill="none" stroke-width="1"/>
+                  </svg>
+                </div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">Digital Twin</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">01</span>
+              <h3 class="video-card__title">数字孪生建模与仿真系统</h3>
+              <p class="video-card__desc">基于Plant Simulation构建产线数字孪生模型，实现生产流程实时仿真与产能瓶颈分析，通过数据驱动优化产线效率，提升整体产能。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">Plant Simulation</span>
+                <span class="video-card__tag">数字孪生</span>
+                <span class="video-card__tag">产能优化</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: Autonomous Driving -->
+        <article class="video-card reveal" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project2-autonomous.mp4" data-title="无人驾驶感知与决策算法">
+              <div class="video-card__poster poster-bg-2" id="poster2">
+                <div class="video-card__poster-decor">
+                  <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="125" r="40" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="0.5"/>
+                    <circle cx="200" cy="125" r="70" stroke="rgba(255,255,255,0.07)" fill="none" stroke-width="0.5" stroke-dasharray="6,4"/>
+                    <circle cx="200" cy="125" r="100" stroke="rgba(255,255,255,0.04)" fill="none" stroke-width="0.5" stroke-dasharray="3,6"/>
+                    <line x1="200" y1="85" x2="200" y2="30" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+                    <line x1="240" y1="125" x2="320" y2="125" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+                    <line x1="160" y1="125" x2="80" y2="125" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+                    <circle cx="200" cy="125" r="4" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="180" y="200" width="40" height="20" rx="3" stroke="rgba(255,255,255,0.08)" fill="rgba(255,255,255,0.03)"/>
+                  </svg>
+                </div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">Autonomous Driving</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">02</span>
+              <h3 class="video-card__title">无人驾驶感知与决策算法</h3>
+              <p class="video-card__desc">在银子运力科技实习期间，参与无人驾驶车辆的感知算法开发与决策系统设计，运用OpenCV与深度学习模型实现环境感知与障碍物检测。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">Python</span>
+                <span class="video-card__tag">OpenCV</span>
+                <span class="video-card__tag">ROS</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Path Planning -->
+        <article class="video-card reveal" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project3-path-planning.mp4" data-title="智能路径规划与仿真验证">
+              <div class="video-card__poster poster-bg-3" id="poster3">
+                <div class="video-card__poster-decor">
+                  <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="40,200 100,170 160,190 200,130 260,110 320,80 380,60" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="40" cy="200" r="4" fill="rgba(255,255,255,0.12)"/>
+                    <circle cx="100" cy="170" r="3" fill="rgba(255,255,255,0.08)"/>
+                    <circle cx="200" cy="130" r="3" fill="rgba(255,255,255,0.08)"/>
+                    <circle cx="320" cy="80" r="3" fill="rgba(255,255,255,0.08)"/>
+                    <circle cx="380" cy="60" r="4" fill="rgba(255,255,255,0.15)"/>
+                    <rect x="60" y="100" width="30" height="30" rx="2" stroke="rgba(255,255,255,0.06)" fill="rgba(255,255,255,0.02)"/>
+                    <rect x="250" y="50" width="25" height="25" rx="2" stroke="rgba(255,255,255,0.06)" fill="rgba(255,255,255,0.02)"/>
+                    <line x1="0" y1="220" x2="400" y2="220" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+                  </svg>
+                </div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">Path Planning</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">03</span>
+              <h3 class="video-card__title">智能路径规划与仿真验证</h3>
+              <p class="video-card__desc">研究基于ROS的多机器人协同路径规划算法，结合A*与DWA算法实现动态避障与全局最优路径搜索，通过MATLAB与仿真平台进行验证与性能对比。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">MATLAB</span>
+                <span class="video-card__tag">ROS</span>
+                <span class="video-card__tag">路径规划</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider"></div>
+
+  <!-- ===== Timeline ===== -->
+  <section class="timeline-section" id="experience" data-component="timeline">
+    <div class="container container--narrow">
+      <div class="section-label reveal">
+        <span class="t-label">经历 / Experience</span>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__period">2026.09 — 2028.06（预计）</div>
+            <h3 class="timeline__title">香港城市大学 · 硕士在读</h3>
+            <p class="timeline__desc">攻读硕士学位，研究方向聚焦数字孪生、工业仿真与智能制造系统，深入探索仿真驱动的工业智能优化方法。</p>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__period">2022.09 — 2026.06</div>
+            <h3 class="timeline__title">深圳技术大学 · 自动化（学士）</h3>
+            <p class="timeline__desc">专业排名前20%，获评优秀毕业生。在校期间完成多个仿真与算法项目，以第一作者在SCI Q1期刊Scientific Reports发表论文，并获发明专利。曾获国家一等奖（信息安全竞赛）、省级二等奖（机械创新设计）、省级三等奖（汇川杯）。</p>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__period">2026.04 — 至今</div>
+            <h3 class="timeline__title">Ashley外企 · 数字化建模与仿真工程师</h3>
+            <p class="timeline__desc">负责产线数字孪生模型的建立与验证，使用Plant Simulation搭建完整生产流程仿真系统。通过数据采集与模型校准，实现产能瓶颈定位与优化建议，辅助管理层决策。参与MES系统对接与仿真数据可视化开发。</p>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <div class="timeline__period">2025.02 — 2025.05</div>
+            <h3 class="timeline__title">银子运力科技 · 无人驾驶算法工程师</h3>
+            <p class="timeline__desc">参与无人驾驶车辆的感知与路径规划算法开发。使用Python和OpenCV进行图像处理与目标检测，基于ROS搭建感知-决策流水线。参与路径规划模块的设计与测试，使用MATLAB进行算法仿真验证与性能评估。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider"></div>
+
+  <!-- ===== Skills ===== -->
+  <section class="skills" id="skills" data-component="skills">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="t-label">能力 / Skills</span>
+      </div>
+      <div class="skills__grid">
+
+        <div class="reveal">
+          <h4 class="skills__group-title">仿真与建模</h4>
+          <div class="skills__tags">
+            <span class="skill-tag">Plant Simulation</span>
+            <span class="skill-tag">Process Simulate</span>
+            <span class="skill-tag">MATLAB</span>
+            <span class="skill-tag">ANSYS</span>
+            <span class="skill-tag">Multisim</span>
+            <span class="skill-tag">Solidworks</span>
+            <span class="skill-tag">LabVIEW</span>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <h4 class="skills__group-title">编程与算法</h4>
+          <div class="skills__tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">ROS</span>
+            <span class="skill-tag">博图 PLC</span>
+            <span class="skill-tag">深度学习</span>
+            <span class="skill-tag">路径规划</span>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <h4 class="skills__group-title">语言与学术</h4>
+          <div class="skills__tags">
+            <span class="skill-tag">英语 CET-6</span>
+            <span class="skill-tag">雅思 IELTS 6.0</span>
+            <span class="skill-tag">SCI 论文写作</span>
+            <span class="skill-tag">专利申请</span>
+            <span class="skill-tag">数字孪生研究</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="section-divider"></div>
+
+  <!-- ===== Contact ===== -->
+  <section class="contact" id="contact" data-component="contact">
+    <div class="container">
+      <div class="section-label reveal" style="justify-content:center;">
+        <span class="t-label">联系 / Contact</span>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <a href="mailto:2455413877@qq.com" class="contact__email">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M22 4L12 13L2 4"/>
+          </svg>
+          2455413877@qq.com
+        </a>
+      </div>
+      <div class="reveal reveal-delay-2 contact__phone">
+        电话：17863282926
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer" data-component="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__text">&copy; 2026 岳恒喆. All rights reserved.</span>
+        <button class="footer__back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top &uarr;</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Video Modal ===== -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="视频播放">
+    <div class="video-modal__backdrop"></div>
+    <div class="video-modal__content">
+      <button class="video-modal__close" aria-label="关闭">&times;</button>
+      <video class="video-modal__video" controls playsinline></video>
+      <p class="video-modal__title"></p>
+    </div>
+  </div>
+
+  <script>
+    /* ===== IntersectionObserver for scroll reveal ===== */
+    (function() {
+      var reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        reveals.forEach(function(el) { el.classList.add('visible'); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function(el) { observer.observe(el); });
+    })();
+
+    /* ===== Navigation scroll state ===== */
+    (function() {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+
+      window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY > 48) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    })();
+
+    /* ===== Smooth scroll for nav links ===== */
+    document.querySelectorAll('.nav__links a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          var offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 48;
+          var top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* ===== Count-up Animation ===== */
+    (function() {
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function animateCount(el) {
+        var target = parseFloat(el.getAttribute('data-target'));
+        var decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1800;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var easedProgress = easeOutCubic(progress);
+          var current = easedProgress * target;
+
+          if (decimals > 0) {
+            el.textContent = current.toFixed(decimals) + suffix;
+          } else {
+            el.textContent = Math.floor(current) + suffix;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            if (decimals > 0) {
+              el.textContent = target.toFixed(decimals) + suffix;
+            } else {
+              el.textContent = target + suffix;
+            }
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      var statsContainers = document.querySelectorAll('.about__stats');
+      if (!statsContainers.length) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.about__stat-value[data-target]').forEach(function(el) {
+          var target = el.getAttribute('data-target');
+          var decimals = parseInt(el.getAttribute('data-decimals')) || 0;
+          var suffix = el.getAttribute('data-suffix') || '';
+          el.textContent = decimals > 0 ? parseFloat(target).toFixed(decimals) + suffix : target + suffix;
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var items = entry.target.querySelectorAll('.about__stat-value[data-target]');
+            items.forEach(function(el, i) {
+              setTimeout(function() { animateCount(el); }, 400 + i * 150);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.6, rootMargin: '0px 0px -60px 0px' });
+
+      statsContainers.forEach(function(container) {
+        observer.observe(container);
+      });
+    })();
+
+    /* ===== Video Modal ===== */
+    (function() {
+      var modal = document.getElementById('videoModal');
+      if (!modal) return;
+
+      var modalVideo = modal.querySelector('.video-modal__video');
+      var modalTitle = modal.querySelector('.video-modal__title');
+      var modalClose = modal.querySelector('.video-modal__close');
+      var modalBackdrop = modal.querySelector('.video-modal__backdrop');
+
+      function openModal(src, title) {
+        modalVideo.src = src;
+        modalTitle.textContent = title || '';
+        modal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+        modalVideo.play().catch(function() {});
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-active');
+        document.body.style.overflow = '';
+        modalVideo.pause();
+        setTimeout(function() {
+          modalVideo.src = '';
+        }, 350);
+      }
+
+      modalClose.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          closeModal();
+        }
+      });
+
+      // Bind click events on video card media areas
+      var mediaAreas = document.querySelectorAll('.video-card__media');
+      mediaAreas.forEach(function(media) {
+        media.addEventListener('click', function() {
+          var videoSrc = this.getAttribute('data-video');
+          var videoTitle = this.getAttribute('data-title');
+          openModal(videoSrc, videoTitle);
+        });
+      });
+    })();
+
+    /* ===== Page Loader ===== */
+    (function() {
+      var loader = document.getElementById('pageLoader');
+      if (!loader) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        loader.classList.add('loaded');
+        document.body.classList.add('page-loaded');
+        return;
+      }
+
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          loader.classList.add('loaded');
+          document.body.classList.add('page-loaded');
+        }, 1000);
+      });
+
+      // Fallback if load event already fired
+      if (document.readyState === 'complete') {
+        setTimeout(function() {
+          loader.classList.add('loaded');
+          document.body.classList.add('page-loaded');
+        }, 1000);
+      }
+    })();
+  </script>
+</body>
+</html>
