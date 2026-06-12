@@ -997,6 +997,67 @@
       letter-spacing: 0;
     }
 
+    /* Text-based project detail cards */
+    .timeline__detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .timeline__detail-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline__detail-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .timeline__detail-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .timeline__detail-title {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .timeline__detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .timeline__detail-tag {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(0,113,227,0.06);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    .timeline__detail-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--fg-subtle);
+      letter-spacing: -0.01em;
+    }
+
     /* ===== Skills ===== */
     .skills {
       padding: var(--space-section) 0;
@@ -1519,6 +1580,15 @@
         grid-template-columns: 1fr;
       }
 
+      .timeline__detail-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .timeline__detail-card {
+        padding: 16px 18px;
+      }
+
       .skills__grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1678,7 +1748,7 @@
     <div class="container">
       <div class="section-label reveal">
         <span class="t-label">项目展示 / Project Showcase</span>
-        <span class="showcase__count">3 projects</span>
+        <span class="showcase__count">7 projects</span>
       </div>
       <div class="showcase__grid">
 
@@ -1761,6 +1831,110 @@
           </div>
         </article>
 
+        <!-- Project 4: AGV Workflow -->
+        <article class="video-card reveal" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project4-simulation.mp4" data-title="Visual Components AGV 工作流编排">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster4.jpg" alt="AGV 工作流编排" loading="lazy">
+                <div class="video-card__poster-overlay"></div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">AGV Workflow</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">04</span>
+              <h3 class="video-card__title">AGV 工作流编排系统</h3>
+              <p class="video-card__desc">使用Visual Components搭建AGV数据流工作流，实现车辆创建、装卸载、多轨道追踪与回站调度的完整物流仿真逻辑。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">Visual Components</span>
+                <span class="video-card__tag">数据流</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5: Material Handling -->
+        <article class="video-card reveal reveal-delay-1" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project5-analysis.mp4" data-title="Plant Simulation 自动化物料搬运系统">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster5.jpg" alt="自动化物料搬运系统" loading="lazy">
+                <div class="video-card__poster-overlay"></div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">Material Handling</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">05</span>
+              <h3 class="video-card__title">自动化物料搬运系统</h3>
+              <p class="video-card__desc">基于Plant Simulation构建自动化物料搬运产线，包含传送带系统、物料转盘、缓冲区与工作站协同控制，实现零件加工全流程仿真。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">Plant Simulation</span>
+                <span class="video-card__tag">传送带</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6: Process Controller -->
+        <article class="video-card reveal" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project6-modeling.mp4" data-title="系统控制器工艺流程仿真与监控">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster6.jpg" alt="工艺流程仿真与监控" loading="lazy">
+                <div class="video-card__poster-overlay"></div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">Process Controller</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">06</span>
+              <h3 class="video-card__title">工艺流程仿真与偏差监控</h3>
+              <p class="video-card__desc">搭建12节点工艺流程仿真系统，集成测点偏差实时监控图表，支持正常/预警/异常/故障多状态可视化，辅助生产过程质量管控。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">系统控制器</span>
+                <span class="video-card__tag">偏差分析</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 7: AGV Scheduling -->
+        <article class="video-card reveal reveal-delay-1" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project7-control.mp4" data-title="AGV 多站点任务调度系统">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster7.jpg" alt="AGV 任务调度系统" loading="lazy">
+                <div class="video-card__poster-overlay"></div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">AGV Scheduling</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">07</span>
+              <h3 class="video-card__title">AGV 多站点任务调度系统</h3>
+              <p class="video-card__desc">设计多站点AGV任务调度系统，包含Buffer缓存管理、多工站协调与路径规划。分析单AGV效率瓶颈，提出多AGV协同优化方案。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">AGV Controller</span>
+                <span class="video-card__tag">效率优化</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -1791,68 +1965,59 @@
             <h3 class="timeline__title">深圳技术大学 · 自动化（学士）</h3>
             <p class="timeline__desc">专业排名前20%，获评优秀毕业生。在校期间完成多个仿真与算法项目，以第一作者在SCI Q1期刊Scientific Reports发表论文，并获发明专利。曾获国家一等奖（信息安全竞赛）、省级二等奖（机械创新设计）、省级三等奖（汇川杯）。</p>
             <button class="timeline__expand-toggle" onclick="toggleExpand(this)" aria-expanded="false">
-              查看本科项目作品
+              查看详细项目经历
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6,9 12,15 18,9"/></svg>
             </button>
             <div class="timeline__expand-content">
               <div class="timeline__projects">
                 <div class="timeline__projects-title">本科期间项目 / 4 Projects</div>
-                <div class="timeline__projects-grid">
+                <div class="timeline__detail-grid">
 
-                  <div class="timeline__project-card" data-video="videos/project4-simulation.mp4" data-title="Visual Components AGV 工作流编排">
-                    <div class="timeline__project-thumb">
-                      <img src="images/poster4.jpg" alt="AGV 工作流编排" loading="lazy">
-                      <div class="timeline__project-thumb-overlay"></div>
-                      <div class="timeline__project-play">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                  <div class="timeline__detail-card">
+                    <div class="timeline__detail-header">
+                      <div class="timeline__detail-title">基于数字孪生的虚实联调生产线仿真设计</div>
+                      <div class="timeline__detail-tags">
+                        <span class="timeline__detail-tag">博图 PLC</span>
+                        <span class="timeline__detail-tag">Process Simulate</span>
                       </div>
                     </div>
-                    <div class="timeline__project-info">
-                      <div class="timeline__project-name">AGV 工作流编排系统</div>
-                      <div class="timeline__project-meta">Visual Components · 数据流建模 · 车辆追踪</div>
-                    </div>
+                    <p class="timeline__detail-desc">搭建完整的机加生产线虚拟仿真平台，实现数字孪生虚实联动控制。完成产线虚拟模型构建、机械臂任务路径规划，并通过PLC信号与仿真系统的双向通信实现虚实联调，验证生产工艺可行性与产线节拍。</p>
                   </div>
 
-                  <div class="timeline__project-card" data-video="videos/project5-analysis.mp4" data-title="Plant Simulation 自动化物料搬运系统">
-                    <div class="timeline__project-thumb">
-                      <img src="images/poster5.jpg" alt="自动化物料搬运系统" loading="lazy">
-                      <div class="timeline__project-thumb-overlay"></div>
-                      <div class="timeline__project-play">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                  <div class="timeline__detail-card">
+                    <div class="timeline__detail-header">
+                      <div class="timeline__detail-title">基于 Eye-Tracking 的全息显示算法项目</div>
+                      <div class="timeline__detail-tags">
+                        <span class="timeline__detail-tag">Python</span>
+                        <span class="timeline__detail-tag">OpenCV</span>
+                        <span class="timeline__detail-tag">STM32</span>
                       </div>
                     </div>
-                    <div class="timeline__project-info">
-                      <div class="timeline__project-name">自动化物料搬运系统</div>
-                      <div class="timeline__project-meta">Plant Simulation · 传送带 · 缓冲区调度</div>
-                    </div>
+                    <p class="timeline__detail-desc">担任硬件组组长，负责算法开发与软硬件联调。使用OpenCV实现人脸检测与实时追踪算法，搭建双自由度追踪平台并完成STM32嵌入式控制，实现系统级集成。项目探索了视线追踪驱动全息显示的技术路径。</p>
                   </div>
 
-                  <div class="timeline__project-card" data-video="videos/project6-modeling.mp4" data-title="系统控制器工艺流程仿真">
-                    <div class="timeline__project-thumb">
-                      <img src="images/poster6.jpg" alt="工艺流程仿真与监控" loading="lazy">
-                      <div class="timeline__project-thumb-overlay"></div>
-                      <div class="timeline__project-play">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                  <div class="timeline__detail-card">
+                    <div class="timeline__detail-header">
+                      <div class="timeline__detail-title">多种路径规划算法在车联网与机器人领域的应用</div>
+                      <div class="timeline__detail-tags">
+                        <span class="timeline__detail-tag">Python</span>
+                        <span class="timeline__detail-tag">ROS</span>
+                        <span class="timeline__detail-tag">Linux</span>
+                        <span class="timeline__detail-tag">TEB</span>
                       </div>
                     </div>
-                    <div class="timeline__project-info">
-                      <div class="timeline__project-name">工艺流程仿真与偏差监控</div>
-                      <div class="timeline__project-meta">系统控制器 · 12节点流程 · 测点偏差分析</div>
-                    </div>
+                    <p class="timeline__detail-desc">担任项目负责人，独立完成Dijkstra、A*等路径规划算法的代码验证与ROS小车实验，对比多种全局规划算法效率，并调试DWA/TEB局部规划器实现动态避障。完成SLAM建图，撰写SCI论文（第一作者，Scientific Reports Q1），获全国竞赛奖项。</p>
                   </div>
 
-                  <div class="timeline__project-card" data-video="videos/project7-control.mp4" data-title="AGV 多站点任务调度系统">
-                    <div class="timeline__project-thumb">
-                      <img src="images/poster7.jpg" alt="AGV 任务调度系统" loading="lazy">
-                      <div class="timeline__project-thumb-overlay"></div>
-                      <div class="timeline__project-play">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                  <div class="timeline__detail-card">
+                    <div class="timeline__detail-header">
+                      <div class="timeline__detail-title">基于绿色工厂的智能喷漆系统</div>
+                      <div class="timeline__detail-tags">
+                        <span class="timeline__detail-tag">机械臂</span>
+                        <span class="timeline__detail-tag">AI 视觉</span>
                       </div>
                     </div>
-                    <div class="timeline__project-info">
-                      <div class="timeline__project-name">AGV 多站点任务调度系统</div>
-                      <div class="timeline__project-meta">AGV Controller · 缓存区管理 · 效率优化</div>
-                    </div>
+                    <p class="timeline__detail-desc">担任项目组长，设计基于机械臂与AI视觉分析的智能喷漆系统。通过AI模型预测喷漆结果并优化喷涂参数，显著减少车辆制造中的漆料浪费，提高生产效率与喷涂均匀性，践行绿色制造理念。</p>
                   </div>
 
                 </div>
@@ -2185,13 +2350,13 @@
         btn.setAttribute('aria-expanded', 'false');
         content.style.maxHeight = '0';
         content.classList.remove('is-expanded');
-        btn.firstChild.textContent = '查看本科项目作品';
+        btn.firstChild.textContent = '查看详细项目经历';
       } else {
         btn.classList.add('is-expanded');
         btn.setAttribute('aria-expanded', 'true');
         content.style.maxHeight = content.scrollHeight + 'px';
         content.classList.add('is-expanded');
-        btn.firstChild.textContent = '收起项目作品';
+        btn.firstChild.textContent = '收起项目经历';
       }
     }
 
