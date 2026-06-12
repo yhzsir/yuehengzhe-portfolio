@@ -522,9 +522,13 @@
 
     .showcase__grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
       margin-top: 44px;
+    }
+
+    .showcase__grid .video-card:first-child {
+      grid-column: 1 / -1;
     }
 
     .video-card {
@@ -831,6 +835,166 @@
       color: var(--fg-subtle);
       max-width: 56ch;
       letter-spacing: -0.01em;
+    }
+
+    /* ===== Expandable Timeline Section ===== */
+    .timeline__expand-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(0,113,227,0.06);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline__expand-toggle:hover {
+      background: rgba(0,113,227,0.12);
+    }
+
+    .timeline__expand-toggle svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .timeline__expand-toggle.is-expanded svg {
+      transform: rotate(180deg);
+    }
+
+    .timeline__expand-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .timeline__expand-content.is-expanded {
+      opacity: 1;
+    }
+
+    .timeline__projects {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      margin-top: 18px;
+    }
+
+    .timeline__projects-title {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--fg-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .timeline__projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .timeline__project-card {
+      position: relative;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline__project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .timeline__project-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .timeline__project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .timeline__project-card:hover .timeline__project-thumb img {
+      transform: scale(1.05);
+    }
+
+    .timeline__project-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .timeline__project-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline__project-card:hover .timeline__project-play {
+      opacity: 1;
+    }
+
+    .timeline__project-play svg {
+      width: 16px;
+      height: 16px;
+      fill: #ffffff;
+      margin-left: 2px;
+    }
+
+    .timeline__project-info {
+      padding: 14px 16px 16px;
+    }
+
+    .timeline__project-name {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline__project-meta {
+      font-size: 12px;
+      color: var(--fg-subtle);
+      letter-spacing: 0;
     }
 
     /* ===== Skills ===== */
@@ -1208,30 +1372,65 @@
       opacity: 0;
     }
 
-    /* ===== Video card poster backgrounds ===== */
-    .poster-bg-1 {
-      background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0f3460 100%);
-    }
-
-    .poster-bg-2 {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    }
-
-    .poster-bg-3 {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #2d4a5e 100%);
-    }
-
-    /* SVG decoration inside poster */
-    .video-card__poster-decor {
+    /* ===== Video card poster with real images ===== */
+    .video-card__poster-img {
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      opacity: 0.12;
-    }
-
-    .video-card__poster-decor svg {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .video-card:hover .video-card__poster-img {
+      transform: scale(1.04);
+    }
+
+    .video-card__poster-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Featured card (first-child, full-width) layout */
+    .showcase__grid .video-card:first-child .video-card__inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 0;
+    }
+
+    .showcase__grid .video-card:first-child .video-card__media {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 300px;
+      border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+    }
+
+    .showcase__grid .video-card:first-child .video-card__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 40px;
+    }
+
+    /* Non-featured cards: vertical layout */
+    .showcase__grid .video-card:not(:first-child) .video-card__inner {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .showcase__grid .video-card:not(:first-child) .video-card__body {
+      padding: 20px 24px 24px;
+    }
+
+    .showcase__grid .video-card:not(:first-child) .video-card__title {
+      font-size: 17px;
+    }
+
+    .showcase__grid .video-card:not(:first-child) .video-card__desc {
+      font-size: 14px;
     }
 
     /* ===== Responsive ===== */
@@ -1296,6 +1495,28 @@
 
       .video-card__body {
         padding: 24px;
+      }
+
+      .showcase__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase__grid .video-card:first-child .video-card__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase__grid .video-card:first-child .video-card__media {
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        min-height: auto;
+      }
+
+      .showcase__grid .video-card:first-child .video-card__body {
+        padding: 20px 24px 24px;
+      }
+
+      .timeline__projects-grid {
+        grid-template-columns: 1fr;
       }
 
       .skills__grid {
@@ -1461,111 +1682,80 @@
       </div>
       <div class="showcase__grid">
 
-        <!-- Project 1: Digital Twin -->
+        <!-- Project 1: Process Simulate — Featured -->
         <article class="video-card reveal" data-component="video-card">
           <div class="video-card__inner">
-            <div class="video-card__media" data-video="videos/project1-digital-twin.mp4" data-title="数字孪生建模与仿真系统">
-              <div class="video-card__poster poster-bg-1" id="poster1">
-                <div class="video-card__poster-decor">
-                  <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="125" x2="400" y2="125" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-dasharray="4,8"/>
-                    <line x1="200" y1="0" x2="200" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="4,8"/>
-                    <circle cx="200" cy="125" r="60" stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="0.5"/>
-                    <circle cx="200" cy="125" r="90" stroke="rgba(255,255,255,0.05)" fill="none" stroke-width="0.5"/>
-                    <rect x="140" y="75" width="120" height="100" rx="4" stroke="rgba(255,255,255,0.06)" fill="none" stroke-width="0.5"/>
-                    <polyline points="80,180 140,150 200,170 260,130 320,160" stroke="rgba(255,255,255,0.12)" fill="none" stroke-width="1"/>
-                  </svg>
-                </div>
+            <div class="video-card__media" data-video="videos/project1-digital-twin.mp4" data-title="Process Simulate 产线数字孪生仿真">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster1.jpg" alt="Process Simulate 产线仿真">
+                <div class="video-card__poster-overlay"></div>
                 <div class="video-card__play-btn">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
                 </div>
-                <span class="video-card__poster-label">Digital Twin</span>
+                <span class="video-card__poster-label">Process Simulate</span>
               </div>
               <video preload="metadata" muted playsinline loop></video>
             </div>
             <div class="video-card__body">
               <span class="video-card__index">01</span>
-              <h3 class="video-card__title">数字孪生建模与仿真系统</h3>
-              <p class="video-card__desc">基于Plant Simulation构建产线数字孪生模型，实现生产流程实时仿真与产能瓶颈分析，通过数据驱动优化产线效率，提升整体产能。</p>
+              <h3 class="video-card__title">Process Simulate 产线数字孪生仿真</h3>
+              <p class="video-card__desc">使用Siemens Process Simulate搭建完整产线数字孪生模型，包含CNC机床、机器人工作站与传送系统的协同仿真，验证生产工艺可行性并优化工序节拍。</p>
               <div class="video-card__tags">
-                <span class="video-card__tag">Plant Simulation</span>
+                <span class="video-card__tag">Process Simulate</span>
                 <span class="video-card__tag">数字孪生</span>
-                <span class="video-card__tag">产能优化</span>
+                <span class="video-card__tag">产线仿真</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- Project 2: Autonomous Driving -->
+        <!-- Project 2: CAD Modeling -->
         <article class="video-card reveal" data-component="video-card">
           <div class="video-card__inner">
-            <div class="video-card__media" data-video="videos/project2-autonomous.mp4" data-title="无人驾驶感知与决策算法">
-              <div class="video-card__poster poster-bg-2" id="poster2">
-                <div class="video-card__poster-decor">
-                  <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="200" cy="125" r="40" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="0.5"/>
-                    <circle cx="200" cy="125" r="70" stroke="rgba(255,255,255,0.07)" fill="none" stroke-width="0.5" stroke-dasharray="6,4"/>
-                    <circle cx="200" cy="125" r="100" stroke="rgba(255,255,255,0.04)" fill="none" stroke-width="0.5" stroke-dasharray="3,6"/>
-                    <line x1="200" y1="85" x2="200" y2="30" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-                    <line x1="240" y1="125" x2="320" y2="125" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-                    <line x1="160" y1="125" x2="80" y2="125" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-                    <circle cx="200" cy="125" r="4" fill="rgba(255,255,255,0.15)"/>
-                    <rect x="180" y="200" width="40" height="20" rx="3" stroke="rgba(255,255,255,0.08)" fill="rgba(255,255,255,0.03)"/>
-                  </svg>
-                </div>
+            <div class="video-card__media" data-video="videos/project2-autonomous.mp4" data-title="Solidworks 机械零件建模设计">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster2.jpg" alt="Solidworks CAD 建模">
+                <div class="video-card__poster-overlay"></div>
                 <div class="video-card__play-btn">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
                 </div>
-                <span class="video-card__poster-label">Autonomous Driving</span>
+                <span class="video-card__poster-label">Solidworks CAD</span>
               </div>
               <video preload="metadata" muted playsinline loop></video>
             </div>
             <div class="video-card__body">
               <span class="video-card__index">02</span>
-              <h3 class="video-card__title">无人驾驶感知与决策算法</h3>
-              <p class="video-card__desc">在银子运力科技实习期间，参与无人驾驶车辆的感知算法开发与决策系统设计，运用OpenCV与深度学习模型实现环境感知与障碍物检测。</p>
+              <h3 class="video-card__title">Solidworks 机械零件建模设计</h3>
+              <p class="video-card__desc">使用Solidworks完成机械支架与轴承座的三维建模与装配设计，涵盖参数化建模、工程图输出与干涉检查。</p>
               <div class="video-card__tags">
-                <span class="video-card__tag">Python</span>
-                <span class="video-card__tag">OpenCV</span>
-                <span class="video-card__tag">ROS</span>
+                <span class="video-card__tag">Solidworks</span>
+                <span class="video-card__tag">CAD</span>
               </div>
             </div>
           </div>
         </article>
 
-        <!-- Project 3: Path Planning -->
-        <article class="video-card reveal" data-component="video-card">
+        <!-- Project 3: Full Line Simulation -->
+        <article class="video-card reveal reveal-delay-1" data-component="video-card">
           <div class="video-card__inner">
-            <div class="video-card__media" data-video="videos/project3-path-planning.mp4" data-title="智能路径规划与仿真验证">
-              <div class="video-card__poster poster-bg-3" id="poster3">
-                <div class="video-card__poster-decor">
-                  <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-                    <polyline points="40,200 100,170 160,190 200,130 260,110 320,80 380,60" stroke="rgba(255,255,255,0.15)" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="40" cy="200" r="4" fill="rgba(255,255,255,0.12)"/>
-                    <circle cx="100" cy="170" r="3" fill="rgba(255,255,255,0.08)"/>
-                    <circle cx="200" cy="130" r="3" fill="rgba(255,255,255,0.08)"/>
-                    <circle cx="320" cy="80" r="3" fill="rgba(255,255,255,0.08)"/>
-                    <circle cx="380" cy="60" r="4" fill="rgba(255,255,255,0.15)"/>
-                    <rect x="60" y="100" width="30" height="30" rx="2" stroke="rgba(255,255,255,0.06)" fill="rgba(255,255,255,0.02)"/>
-                    <rect x="250" y="50" width="25" height="25" rx="2" stroke="rgba(255,255,255,0.06)" fill="rgba(255,255,255,0.02)"/>
-                    <line x1="0" y1="220" x2="400" y2="220" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
-                  </svg>
-                </div>
+            <div class="video-card__media" data-video="videos/project3-path-planning.mp4" data-title="Siemens 整线生产流程仿真">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster3.jpg" alt="Siemens 整线仿真">
+                <div class="video-card__poster-overlay"></div>
                 <div class="video-card__play-btn">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
                 </div>
-                <span class="video-card__poster-label">Path Planning</span>
+                <span class="video-card__poster-label">Full Line Simulation</span>
               </div>
               <video preload="metadata" muted playsinline loop></video>
             </div>
             <div class="video-card__body">
               <span class="video-card__index">03</span>
-              <h3 class="video-card__title">智能路径规划与仿真验证</h3>
-              <p class="video-card__desc">研究基于ROS的多机器人协同路径规划算法，结合A*与DWA算法实现动态避障与全局最优路径搜索，通过MATLAB与仿真平台进行验证与性能对比。</p>
+              <h3 class="video-card__title">Siemens 整线生产流程仿真</h3>
+              <p class="video-card__desc">基于Siemens Process Simulate 16.1实现多设备整线仿真，包含50+工件的流程编排、机器人路径规划与序列控制，验证自动化产线整体运行逻辑。</p>
               <div class="video-card__tags">
-                <span class="video-card__tag">MATLAB</span>
-                <span class="video-card__tag">ROS</span>
-                <span class="video-card__tag">路径规划</span>
+                <span class="video-card__tag">Siemens</span>
+                <span class="video-card__tag">PLCSIM</span>
               </div>
             </div>
           </div>
@@ -1600,6 +1790,74 @@
             <div class="timeline__period">2022.09 — 2026.06</div>
             <h3 class="timeline__title">深圳技术大学 · 自动化（学士）</h3>
             <p class="timeline__desc">专业排名前20%，获评优秀毕业生。在校期间完成多个仿真与算法项目，以第一作者在SCI Q1期刊Scientific Reports发表论文，并获发明专利。曾获国家一等奖（信息安全竞赛）、省级二等奖（机械创新设计）、省级三等奖（汇川杯）。</p>
+            <button class="timeline__expand-toggle" onclick="toggleExpand(this)" aria-expanded="false">
+              查看本科项目作品
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="6,9 12,15 18,9"/></svg>
+            </button>
+            <div class="timeline__expand-content">
+              <div class="timeline__projects">
+                <div class="timeline__projects-title">本科期间项目 / 4 Projects</div>
+                <div class="timeline__projects-grid">
+
+                  <div class="timeline__project-card" data-video="videos/project4-simulation.mp4" data-title="Visual Components AGV 工作流编排">
+                    <div class="timeline__project-thumb">
+                      <img src="images/poster4.jpg" alt="AGV 工作流编排" loading="lazy">
+                      <div class="timeline__project-thumb-overlay"></div>
+                      <div class="timeline__project-play">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                      </div>
+                    </div>
+                    <div class="timeline__project-info">
+                      <div class="timeline__project-name">AGV 工作流编排系统</div>
+                      <div class="timeline__project-meta">Visual Components · 数据流建模 · 车辆追踪</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline__project-card" data-video="videos/project5-analysis.mp4" data-title="Plant Simulation 自动化物料搬运系统">
+                    <div class="timeline__project-thumb">
+                      <img src="images/poster5.jpg" alt="自动化物料搬运系统" loading="lazy">
+                      <div class="timeline__project-thumb-overlay"></div>
+                      <div class="timeline__project-play">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                      </div>
+                    </div>
+                    <div class="timeline__project-info">
+                      <div class="timeline__project-name">自动化物料搬运系统</div>
+                      <div class="timeline__project-meta">Plant Simulation · 传送带 · 缓冲区调度</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline__project-card" data-video="videos/project6-modeling.mp4" data-title="系统控制器工艺流程仿真">
+                    <div class="timeline__project-thumb">
+                      <img src="images/poster6.jpg" alt="工艺流程仿真与监控" loading="lazy">
+                      <div class="timeline__project-thumb-overlay"></div>
+                      <div class="timeline__project-play">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                      </div>
+                    </div>
+                    <div class="timeline__project-info">
+                      <div class="timeline__project-name">工艺流程仿真与偏差监控</div>
+                      <div class="timeline__project-meta">系统控制器 · 12节点流程 · 测点偏差分析</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline__project-card" data-video="videos/project7-control.mp4" data-title="AGV 多站点任务调度系统">
+                    <div class="timeline__project-thumb">
+                      <img src="images/poster7.jpg" alt="AGV 任务调度系统" loading="lazy">
+                      <div class="timeline__project-thumb-overlay"></div>
+                      <div class="timeline__project-play">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                      </div>
+                    </div>
+                    <div class="timeline__project-info">
+                      <div class="timeline__project-name">AGV 多站点任务调度系统</div>
+                      <div class="timeline__project-meta">AGV Controller · 缓存区管理 · 效率优化</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1915,6 +2173,47 @@
           document.body.classList.add('page-loaded');
         }, 1000);
       }
+    })();
+
+    /* ===== Expandable Timeline ===== */
+    function toggleExpand(btn) {
+      var content = btn.nextElementSibling;
+      var isExpanded = btn.classList.contains('is-expanded');
+
+      if (isExpanded) {
+        btn.classList.remove('is-expanded');
+        btn.setAttribute('aria-expanded', 'false');
+        content.style.maxHeight = '0';
+        content.classList.remove('is-expanded');
+        btn.firstChild.textContent = '查看本科项目作品';
+      } else {
+        btn.classList.add('is-expanded');
+        btn.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.classList.add('is-expanded');
+        btn.firstChild.textContent = '收起项目作品';
+      }
+    }
+
+    /* ===== Timeline project card click → modal ===== */
+    (function() {
+      var modal = document.getElementById('videoModal');
+      if (!modal) return;
+
+      var modalVideo = modal.querySelector('.video-modal__video');
+      var modalTitle = modal.querySelector('.video-modal__title');
+
+      document.querySelectorAll('.timeline__project-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var videoSrc = this.getAttribute('data-video');
+          var videoTitle = this.getAttribute('data-title');
+          modalVideo.src = videoSrc;
+          modalTitle.textContent = videoTitle || '';
+          modal.classList.add('is-active');
+          document.body.style.overflow = 'hidden';
+          modalVideo.play().catch(function() {});
+        });
+      });
     })();
   </script>
 </body>
