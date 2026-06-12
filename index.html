@@ -754,6 +754,84 @@
       background: rgba(255,255,255,0.25);
     }
 
+    /* ===== Tool Marquee (Infinite Scroll) ===== */
+    .tool-marquee {
+      margin-top: 56px;
+      overflow: hidden;
+      position: relative;
+      padding: 28px 0;
+    }
+    .tool-marquee::before,
+    .tool-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .tool-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-alt), transparent);
+    }
+    .tool-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-alt), transparent);
+    }
+    .tool-marquee__track {
+      display: flex;
+      gap: 32px;
+      animation: marqueeScroll 35s linear infinite;
+      width: max-content;
+    }
+    .tool-marquee:hover .tool-marquee__track {
+      animation-play-state: paused;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tool-marquee__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      flex-shrink: 0;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+      cursor: default;
+    }
+    .tool-marquee__item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 16px rgba(0,113,227,0.08);
+      transform: translateY(-2px);
+    }
+    .tool-marquee__icon {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tool-marquee__icon svg,
+    .tool-marquee__icon img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+    .tool-marquee__label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--fg);
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+
     /* ===== Timeline ===== */
     .timeline-section {
       padding: var(--space-section) 0;
@@ -1518,6 +1596,11 @@
         transform: none !important;
         filter: none !important;
       }
+      .tool-marquee__track {
+        animation: none !important;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     @media (max-width: 900px) {
@@ -1639,6 +1722,22 @@
 
       .video-card__title {
         font-size: 17px;
+      }
+
+      .tool-marquee__item {
+        padding: 8px 14px;
+        gap: 8px;
+      }
+      .tool-marquee__icon svg,
+      .tool-marquee__icon img {
+        width: 20px;
+        height: 20px;
+      }
+      .tool-marquee__label {
+        font-size: 12px;
+      }
+      .tool-marquee__track {
+        gap: 16px;
       }
     }
   </style>
@@ -1936,6 +2035,111 @@
         </article>
 
       </div>
+
+      <!-- Tool Marquee: Infinite scrolling tech stack icons -->
+      <div class="tool-marquee reveal">
+        <div class="tool-marquee__track">
+          <!-- Set 1 -->
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/python.svg" alt="Python"></span>
+            <span class="tool-marquee__label">Python</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/matlab.svg" alt="MATLAB"></span>
+            <span class="tool-marquee__label">MATLAB</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#FF6B35"/><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Arial">SW</text></svg></span>
+            <span class="tool-marquee__label">Solidworks</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/ansys.svg" alt="ANSYS" style="filter: brightness(0) saturate(100%) invert(35%) sepia(90%) saturate(1500%) hue-rotate(15deg) brightness(95%) contrast(95%);"></span>
+            <span class="tool-marquee__label">ANSYS</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#5C2D91"/><text x="12" y="16" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="Arial">NI</text></svg></span>
+            <span class="tool-marquee__label">Multisim</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/labview.svg" alt="LabVIEW"></span>
+            <span class="tool-marquee__label">LabVIEW</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/siemens.svg" alt="Siemens" style="filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1500%) hue-rotate(175deg) brightness(90%) contrast(95%);"></span>
+            <span class="tool-marquee__label">Plant Simulation</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/siemens.svg" alt="Siemens" style="filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1500%) hue-rotate(175deg) brightness(90%) contrast(95%);"></span>
+            <span class="tool-marquee__label">Process Simulate</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/siemens.svg" alt="Siemens" style="filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1500%) hue-rotate(175deg) brightness(90%) contrast(95%);"></span>
+            <span class="tool-marquee__label">博图 PLC</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/opencv.svg" alt="OpenCV"></span>
+            <span class="tool-marquee__label">OpenCV</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/ros.svg" alt="ROS"></span>
+            <span class="tool-marquee__label">ROS</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/tensorflow.svg" alt="TensorFlow"></span>
+            <span class="tool-marquee__label">TensorFlow</span>
+          </div>
+          <!-- Set 2 (duplicate for seamless loop) -->
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/python.svg" alt="Python"></span>
+            <span class="tool-marquee__label">Python</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/matlab.svg" alt="MATLAB"></span>
+            <span class="tool-marquee__label">MATLAB</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#FF6B35"/><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Arial">SW</text></svg></span>
+            <span class="tool-marquee__label">Solidworks</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/ansys.svg" alt="ANSYS" style="filter: brightness(0) saturate(100%) invert(35%) sepia(90%) saturate(1500%) hue-rotate(15deg) brightness(95%) contrast(95%);"></span>
+            <span class="tool-marquee__label">ANSYS</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#5C2D91"/><text x="12" y="16" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" font-family="Arial">NI</text></svg></span>
+            <span class="tool-marquee__label">Multisim</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/labview.svg" alt="LabVIEW"></span>
+            <span class="tool-marquee__label">LabVIEW</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/siemens.svg" alt="Siemens" style="filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1500%) hue-rotate(175deg) brightness(90%) contrast(95%);"></span>
+            <span class="tool-marquee__label">Plant Simulation</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/siemens.svg" alt="Siemens" style="filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1500%) hue-rotate(175deg) brightness(90%) contrast(95%);"></span>
+            <span class="tool-marquee__label">Process Simulate</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/siemens.svg" alt="Siemens" style="filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1500%) hue-rotate(175deg) brightness(90%) contrast(95%);"></span>
+            <span class="tool-marquee__label">博图 PLC</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/opencv.svg" alt="OpenCV"></span>
+            <span class="tool-marquee__label">OpenCV</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/ros.svg" alt="ROS"></span>
+            <span class="tool-marquee__label">ROS</span>
+          </div>
+          <div class="tool-marquee__item">
+            <span class="tool-marquee__icon"><img src="images/icons/tensorflow.svg" alt="TensorFlow"></span>
+            <span class="tool-marquee__label">TensorFlow</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
