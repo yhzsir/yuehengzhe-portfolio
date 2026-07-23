@@ -531,6 +531,10 @@
       grid-column: 1 / -1;
     }
 
+    .showcase__grid .video-card:last-child {
+      grid-column: 1 / -1;
+    }
+
     .video-card {
       position: relative;
       background: var(--surface);
@@ -1554,21 +1558,41 @@
       padding: 36px 40px;
     }
 
+    .showcase__grid .video-card:last-child .video-card__inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 0;
+    }
+
+    .showcase__grid .video-card:last-child .video-card__media {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 300px;
+      border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+    }
+
+    .showcase__grid .video-card:last-child .video-card__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 40px;
+    }
+
     /* Non-featured cards: vertical layout */
-    .showcase__grid .video-card:not(:first-child) .video-card__inner {
+    .showcase__grid .video-card:not(:first-child):not(:last-child) .video-card__inner {
       display: flex;
       flex-direction: column;
     }
 
-    .showcase__grid .video-card:not(:first-child) .video-card__body {
+    .showcase__grid .video-card:not(:first-child):not(:last-child) .video-card__body {
       padding: 20px 24px 24px;
     }
 
-    .showcase__grid .video-card:not(:first-child) .video-card__title {
+    .showcase__grid .video-card:not(:first-child):not(:last-child) .video-card__title {
       font-size: 17px;
     }
 
-    .showcase__grid .video-card:not(:first-child) .video-card__desc {
+    .showcase__grid .video-card:not(:first-child):not(:last-child) .video-card__desc {
       font-size: 14px;
     }
 
@@ -1656,6 +1680,20 @@
       }
 
       .showcase__grid .video-card:first-child .video-card__body {
+        padding: 20px 24px 24px;
+      }
+
+      .showcase__grid .video-card:last-child .video-card__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase__grid .video-card:last-child .video-card__media {
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        min-height: auto;
+      }
+
+      .showcase__grid .video-card:last-child .video-card__body {
         padding: 20px 24px 24px;
       }
 
