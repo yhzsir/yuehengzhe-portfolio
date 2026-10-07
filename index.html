@@ -531,6 +531,12 @@
       grid-column: 1 / -1;
     }
 
+    /* When the last card is alone in its row (odd total), stretch it to
+       align with the combined width of the two cards in the row above */
+    .showcase__grid .video-card:last-child:not(:first-child):nth-child(even) {
+      grid-column: 1 / -1;
+    }
+
     .video-card {
       position: relative;
       background: var(--surface);
@@ -1572,6 +1578,28 @@
       font-size: 14px;
     }
 
+    /* Lone last card (odd leftover): spans full width, horizontal layout
+       matching the combined width of the two cards in the row above */
+    .showcase__grid .video-card:last-child:not(:first-child):nth-child(even) .video-card__inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 0;
+    }
+
+    .showcase__grid .video-card:last-child:not(:first-child):nth-child(even) .video-card__media {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 260px;
+      border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+    }
+
+    .showcase__grid .video-card:last-child:not(:first-child):nth-child(even) .video-card__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 40px;
+    }
+
     /* ===== Responsive ===== */
     @media (prefers-reduced-motion: reduce) {
       .page-loader { display: none; }
@@ -1650,6 +1678,16 @@
       }
 
       .showcase__grid .video-card:first-child .video-card__media {
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        min-height: auto;
+      }
+
+      .showcase__grid .video-card:last-child:not(:first-child):nth-child(even) .video-card__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase__grid .video-card:last-child:not(:first-child):nth-child(even) .video-card__media {
         aspect-ratio: 16 / 9;
         border-radius: var(--radius-xl) var(--radius-xl) 0 0;
         min-height: auto;
@@ -1847,7 +1885,7 @@
     <div class="container">
       <div class="section-label reveal">
         <span class="t-label">项目展示 / Project Showcase</span>
-        <span class="showcase__count">11 projects</span>
+        <span class="showcase__count">12 projects</span>
       </div>
       <div class="showcase__grid">
 
@@ -2133,6 +2171,32 @@
               <div class="video-card__tags">
                 <span class="video-card__tag">FlexSim</span>
                 <span class="video-card__tag">四向车</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 12: FlexSim Palletizer + AGV Smart Warehouse -->
+        <article class="video-card reveal" data-component="video-card">
+          <div class="video-card__inner">
+            <div class="video-card__media" data-video="videos/project12-palletizer-agv.mp4" data-title="FlexSim 码垛机配合AGV智能仓库仿真">
+              <div class="video-card__poster">
+                <img class="video-card__poster-img" src="images/poster12.jpg" alt="FlexSim 码垛机配合AGV智能仓库仿真" loading="lazy">
+                <div class="video-card__poster-overlay"></div>
+                <div class="video-card__play-btn">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <span class="video-card__poster-label">Palletizer + AGV</span>
+              </div>
+              <video preload="metadata" muted playsinline loop></video>
+            </div>
+            <div class="video-card__body">
+              <span class="video-card__index">12</span>
+              <h3 class="video-card__title">FlexSim 码垛机配合AGV智能仓库仿真</h3>
+              <p class="video-card__desc">基于FlexSim构建码垛机与AGV协同作业的智能仓库系统，涵盖码垛机自动堆垛、AGV自动搬运与入库调度全流程，实现仓储物流的高效自动化仿真验证。</p>
+              <div class="video-card__tags">
+                <span class="video-card__tag">FlexSim</span>
+                <span class="video-card__tag">码垛机 + AGV</span>
               </div>
             </div>
           </div>
